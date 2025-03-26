@@ -1,6 +1,6 @@
 @Component
-export  struct EmptyView {
-  @State message: string = 'common'
+export struct MainPage {
+  @State message: string = 'homeLibrary';
 
   build() {
     Column(){

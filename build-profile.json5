@@ -27,7 +27,7 @@
   "modules": [
     {
       "name": "entry",
-      "srcPath": "./entry",
+      "srcPath": "./prodect/entry",
       "targets": [
         {
           "name": "default",
@@ -48,6 +48,10 @@
           ]
         }
       ]
+    },
+    {
+      "name": "homeLibrary",
+      "srcPath": "./features/homeLibrary"
     }
   ]
 }

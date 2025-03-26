@@ -1,8 +1,8 @@
-import {EmptyView} from 'common'
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World';
+
   build() {
     Row() {
       Column() {
@@ -12,7 +12,6 @@ struct Index {
           .onClick(() => {
             this.message = 'Welcome';
           })
-        EmptyView()
       }
       .width('100%')
     }
