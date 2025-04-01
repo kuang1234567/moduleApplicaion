@@ -1,5 +1,7 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/Page01_media",
+    "pages/Page02_commonMedia"
   ]
 }

@@ -31,18 +31,58 @@
 //三层目录架构 common 公共特性目录  features 功能模块目录  product 产品层目录 以后所有hap默认但在product中，hsp模块放在common，用于存放公共工具和代码 har模块放在features可以将
 //项目拆分为无数个模块，独立管理
 
-import {EmptyView} from 'common'
-import {MainPage} from 'homelibrary'
+//三, 一多开发介绍
+// 一多开发：主要包含两个层面
+//一次开发，多个设备终端适配运行。不同设备屏幕你们能看到不同布局方案。
+//一次开发，根据不同终端设备打包为不同的hap。在每一种终端设备中就能下载对应的安装包。
+//一多开发需要用到的技术： 1.媒体查询技术：根据不同的屏幕尺寸用户自己来决定如何布局。2.栅格系统：栅格系统相当于封装好的组件，可以实现页面布局，根据屏幕大小来决定元素排列规则。（底层也是媒体查询）
+
+
+// import {EmptyView} from 'common'
+// import {MainPage} from 'homelibrary'
+import { router } from '@kit.ArkUI'
+// import { BreakPointSystem } from 'common'
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
+  @State countdown:number = 3
+  private timer:number = 0
+  // private breakPointSystem = new BreakPointSystem()
+  // @StorageProp('currentBreakpoint') currentBreakpoint:string = 'sm'
 
+  aboutToAppear(): void {
+    // this.breakPointSystem.register()
+    this.timer = setInterval(()=>{
+     if(this.countdown>0){
+       this.countdown -= 1
+     }else{
+       clearInterval(this.timer)
+       router.pushUrl({
+         url: 'pages/Page01_media'
+       })
+     }
+   },1000)
+  }
+
+  aboutToDisappear(): void {
+    // this.breakPointSystem.unregister()
+    if(this.timer){
+      clearInterval(this.timer)
+    }
+  }
   build() {
     Column() {
-      Text(this.message)
-      EmptyView()
-      MainPage()
+      Flex({ direction:FlexDirection.Column,alignItems:ItemAlign.Center}){
+        Column(){
+          // Text(this.currentBreakpoint)
+          Image($r('app.media.woniuicon')).width(100).height(100).objectFit(ImageFit.Fill).borderRadius(10)
+          Text(`倒计时：${this.countdown}`).fontSize(16).margin({top: 20})
+        }.justifyContent(FlexAlign.Center).flexGrow(1)
+        Column(){
+          Image($r('app.media.woniuShop')).width(100)
+          Text('WoniuMa|超市').margin({top: 20}).fontColor('#acacab').fontSize(20).letterSpacing(16)
+        }.padding({bottom: 100})
+      }
     }
     .height('100%')
     .width('100%')
