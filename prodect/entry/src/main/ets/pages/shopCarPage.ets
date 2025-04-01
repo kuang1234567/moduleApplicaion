@@ -1,23 +1,10 @@
 @Entry
 @Component
-struct ShopCarPage {
-  @State message: string = 'Hello World';
+export struct ShopCarPage {
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('ShopCarPageHelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+    Column(){
+      Text('购物车页面').fontSize(30)
     }
-    .height('100%')
-    .width('100%')
   }
 }

@@ -1,23 +1,10 @@
 @Entry
 @Component
-struct MyPage {
-  @State message: string = 'Hello World';
+export struct MyPage {
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('MyPageHelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+    Column(){
+      Text('我的页面').fontSize(30)
     }
-    .height('100%')
-    .width('100%')
   }
 }

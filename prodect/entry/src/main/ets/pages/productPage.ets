@@ -1,23 +1,7 @@
 @Entry
 @Component
-struct ProductPage {
-  @State message: string = 'Hello World';
-
+export  struct ProductPage {
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('ProductPageHelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
-    }
-    .height('100%')
-    .width('100%')
+    Text('产品页面').fontSize(30)
   }
 }

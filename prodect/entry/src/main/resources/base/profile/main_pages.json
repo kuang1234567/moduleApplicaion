@@ -2,6 +2,9 @@
   "src": [
     "pages/Index",
     "pages/Page01_media",
-    "pages/Page02_commonMedia"
+    "pages/Page02_commonMedia",
+    "pages/productPage",
+    "pages/shopCarPage",
+    "pages/MyPage"
   ]
 }

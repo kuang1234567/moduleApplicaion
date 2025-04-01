@@ -41,31 +41,50 @@
 // import {EmptyView} from 'common'
 // import {MainPage} from 'homelibrary'
 import { router } from '@kit.ArkUI'
-// import { BreakPointSystem } from 'common'
+import { BreakPointSystem } from 'common'
 @Entry
 @Component
 struct Index {
   @State countdown:number = 3
   private timer:number = 0
-  // private breakPointSystem = new BreakPointSystem()
-  // @StorageProp('currentBreakpoint') currentBreakpoint:string = 'sm'
+  private breakPointSystem = new BreakPointSystem()
+  @StorageProp('currentBreakpoint') currentBreakpoint:string = 'sm'
+  @State factor:number = 1 //适配因子
 
   aboutToAppear(): void {
-    // this.breakPointSystem.register()
+    this.breakPointSystem.register()
+    //套一个setTimeout后面执行，让currentBreakpoint初始化完成
+    //根据宽度来修改对应的适配因子
+    setTimeout(()=>{
+      console.log('this.currentBreakpoint',this.currentBreakpoint)
+      switch (this.currentBreakpoint) {
+        case 'sm':
+          this.factor = 1
+          break;
+        case 'md':
+          this.factor = 1.2
+          break;
+        case 'lg':
+          this.factor = 1.6
+          break;
+        default:
+          break;
+      }
+    },0)
     this.timer = setInterval(()=>{
      if(this.countdown>0){
        this.countdown -= 1
      }else{
        clearInterval(this.timer)
        router.pushUrl({
-         url: 'pages/Page01_media'
+         url: 'pages/Page02_commonMedia'
        })
      }
    },1000)
   }
 
   aboutToDisappear(): void {
-    // this.breakPointSystem.unregister()
+    this.breakPointSystem.unregister()
     if(this.timer){
       clearInterval(this.timer)
     }
@@ -74,13 +93,12 @@ struct Index {
     Column() {
       Flex({ direction:FlexDirection.Column,alignItems:ItemAlign.Center}){
         Column(){
-          // Text(this.currentBreakpoint)
-          Image($r('app.media.woniuicon')).width(100).height(100).objectFit(ImageFit.Fill).borderRadius(10)
-          Text(`倒计时：${this.countdown}`).fontSize(16).margin({top: 20})
+          Image($r('app.media.woniuicon')).width(100 * this.factor).height(100* this.factor).objectFit(ImageFit.Fill).borderRadius(10* this.factor)
+          Text(`倒计时：${this.countdown}`).fontSize(16* this.factor).margin({top: 20* this.factor})
         }.justifyContent(FlexAlign.Center).flexGrow(1)
         Column(){
-          Image($r('app.media.woniuShop')).width(100)
-          Text('WoniuMa|超市').margin({top: 20}).fontColor('#acacab').fontSize(20).letterSpacing(16)
+          Image($r('app.media.woniuShop')).width(100* this.factor)
+          Text('WoniuMa|超市').margin({top: 20}).fontColor('#acacab').fontSize(20* this.factor).letterSpacing(16* this.factor)
         }.padding({bottom: 100})
       }
     }
