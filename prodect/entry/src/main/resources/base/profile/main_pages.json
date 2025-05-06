@@ -5,6 +5,8 @@
     "pages/Page02_commonMedia",
     "pages/productPage",
     "pages/shopCarPage",
-    "pages/MyPage"
-  ]
+    "pages/MyPage",
+    "pages/Page03_detial",
+    "pages/CartPage"
+  ,"pages/cartDBPage"]
 }

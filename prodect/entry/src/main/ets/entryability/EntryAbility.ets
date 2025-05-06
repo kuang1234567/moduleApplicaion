@@ -1,6 +1,7 @@
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
+import { cartDBUtils,preferencesUtil,kVStore } from 'common'
 
 const DOMAIN = 0x0000;
 
@@ -15,6 +16,14 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
+    //初始化数据库
+    cartDBUtils.initCartDB(this.context,'MYCART')
+    //初始化preferencesUtil
+    preferencesUtil.init(this.context,"myStore")
+    //初始化kvstore
+    kVStore.init(this.context)
+    kVStore.createStore("myStore")
+
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 

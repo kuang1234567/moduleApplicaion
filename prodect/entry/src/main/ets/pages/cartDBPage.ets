@@ -1,23 +1,45 @@
+import { CartModel } from 'common/src/main/ets/comonModel/cartModel';
+import { relationalStore } from '@kit.ArkData'
+import {cartDBUtils,preferencesUtil,kVStore} from "common"
 @Entry
 @Component
-struct CartDBPage {
-  @State message: string = 'Hello World';
+struct MarqueeExample {
+  @State myId: number = 0
+  @State count: number = 0
+  @State carts: CartModel[] = []
+  @State username:string = ""
+
+  aboutToAppear(): void {
+    preferencesUtil.readData("theme")
+  }
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('CartDBPageHelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+    Column() {
+      Button('设置主题 blue').onClick((event:ClickEvent)=>{
+        preferencesUtil.insert('theme','blue')
+      })
+
+      Button('获取主题 blue').onClick((event:ClickEvent)=>{
+        const result = preferencesUtil.readData('theme')
+        console.log(`result:${result}`)
+      })
+
+
+
+      TextInput({placeholder:"请输入用户名",text:$$this.username})
+      Button("存储数据").onClick((event: ClickEvent) => {
+        kVStore.insert("username",this.username)
+        kVStore.insert("classes",JSON.stringify({id:1,name:"xiaofeifei"}))
+      })
+      Button("获取数据").onClick((event: ClickEvent) => {
+        kVStore.getData("username").then(res=>{
+          console.log(`res:${res}`)
         })
-        .onClick(() => {
-          this.message = 'Welcome';
+        kVStore.getData("classes").then(res=>{
+          console.log(`res2:${res}`)
         })
+      })
     }
-    .height('100%')
-    .width('100%')
+    .backgroundColor("#f1f3f5")
   }
 }

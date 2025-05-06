@@ -1,13 +1,8 @@
-@Component
-struct Index {
-  @State message: string = 'Hello World'
-  build() {
-    Row() {
-      Column() {
-   
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
+import { myRequestGet } from 'common'
+
+
+//商品详情接口
+export function findProductDataByIdApi<T,K>(params:K){
+  console.log('params1',JSON.stringify(params))
+  return myRequestGet<T,K>('/goods/searchById',params)
 }

@@ -1,3 +1,5 @@
+//在common公共组件中如果要引入图片，引入的是AppScope中的图片，如果把图片放到common中是拿不到图片的。
+
 @Entry
 @Component
 struct Index {

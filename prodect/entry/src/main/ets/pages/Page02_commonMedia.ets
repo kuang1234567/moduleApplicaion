@@ -2,6 +2,7 @@ import { MainPage } from 'homelibrary'
 import { MyPage} from './MyPage'
 import { ProductPage } from './productPage'
 import { ShopCarPage } from './shopCarPage'
+import { router } from '@kit.ArkUI'
 
 class GlobalTmp  {
   index: number
@@ -38,11 +39,19 @@ struct Page02_commonMedia {
         .lineHeight(22)
     }.width('100%')
   }
+
+  private routerPushDetail = (id:string)=>{
+    console.log('idddd',id)
+    router.pushUrl({
+      url: 'pages/Page03_detial',
+      params:{value:id}
+    })
+  }
   build() {
       Column(){
         Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
           TabContent() {
-            MainPage()
+            MainPage({onClickItem: this.routerPushDetail})
           }.tabBar(this.tabBuilder(new GlobalTmp(0, '首页',$r('app.media.home'),$r('app.media.homeActive'))))
 
           TabContent() {

@@ -8,6 +8,5 @@
     "@ohos/hamock": "1.0.0",
     "common": "file:./common",
     "homelibrary": "file:./features/homeLibrary"
-
   }
 }

@@ -1,3 +1,9 @@
 export { add } from './src/main/ets/utils/Calc';
 export { EmptyView } from './src/main/ets/components/emptyView';
 export { BreakPointSystem } from './src/main/ets/utils/BreakPointSystem'
+export { MyRequest,myRequestGet,myRequestPost,myRequestPut,myRequestDelete } from './src/main/ets/utils/httpUtils'
+export { objectToQueryString } from './src/main/ets/utils/objectToQueryString';
+export { MyDataSource } from './src/main/ets/comonModel/lazyForEachMyDataSource'
+export { cartDBUtils } from './src/main/ets/utils/cartDBUtils'
+export { preferencesUtil } from './src/main/ets/utils/PreferencesUtil'
+export { kVStore } from './src/main/ets/utils/KVStore'
